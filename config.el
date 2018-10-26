@@ -9,6 +9,10 @@
  ;; doom-font (font-spec :family "Dejavu Sans Mono" :size 15)
  doom-big-font (font-spec :family "Fira Code" :size 20))
 
+(after! evil-snipe
+  (evil-snipe-mode -1)
+  (evil-snipe-override-mode -1))
+
 (after! company-coq
   (map! :map coq-mode-map
         "<f2>" #'proof-undo-last-successful-command
@@ -41,7 +45,10 @@
 
       (:after yasnippet
         (:map yas-minor-mode-map
-          :v [tab] #'indent-for-tab-command)))
+          :v [tab] #'indent-for-tab-command))
+
+      (:after evil-surround
+        :v "s" #'evil-surround-region))
 
 (map! :leader
       :desc "Describe bindings" :n "?" #'counsel-descbinds)
