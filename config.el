@@ -7,6 +7,7 @@
  ;; doom-font (font-spec :family "Dejavu Sans Mono" :size 15)
  doom-big-font (font-spec :family "Fira Code" :size 20)
  doom-inhibit-indent-detection t
+ +pretty-code-enabled-modes '(not coq-mode)
  evil-want-abbrev-expand-on-insert-exit nil
  +evil-want-o/O-to-continue-comments nil)
 

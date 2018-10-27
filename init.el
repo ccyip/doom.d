@@ -32,6 +32,7 @@
        vc-gutter
        vi-tilde-fringe
        window-select
+       pretty-code
 
        :editor
        multiple-cursors
