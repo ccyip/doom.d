@@ -10,7 +10,7 @@
 ;;;###autoload (autoload '+proof-motion-hydra/proof-undo-last-successful-command "autoload/pg" nil nil)
 ;;;###autoload (autoload '+proof-motion-hydra/proof-assert-next-command-interactive "autoload/pg" nil nil)
 ;;;###autoload (autoload '+proof-motion-hydra/proof-goto-point "autoload/pg" nil nil)
-(defhydra +proof-motion-hydra (:hint nil)
+(defhydra +proof-motion-hydra (:hint nil :foreign-keys run)
   "action"
   ("u" proof-undo-last-successful-command "Undo last command")
   ("N" proof-undo-last-successful-command "Undo last command")
