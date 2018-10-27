@@ -1,13 +1,14 @@
 ;;; config.el -*- lexical-binding: t; -*-
 
 (setq-default
- evil-want-abbrev-expand-on-insert-exit nil
- +evil-want-o/O-to-continue-comments nil
  doom-theme 'doom-one
  doom-font (font-spec :family "Fira Code" :size 15)
  ;; doom-font (font-spec :family "Source Code Pro" :size 15)
  ;; doom-font (font-spec :family "Dejavu Sans Mono" :size 15)
- doom-big-font (font-spec :family "Fira Code" :size 20))
+ doom-big-font (font-spec :family "Fira Code" :size 20)
+ doom-inhibit-indent-detection t
+ evil-want-abbrev-expand-on-insert-exit nil
+ +evil-want-o/O-to-continue-comments nil)
 
 (after! evil-snipe
   (evil-snipe-mode -1)
