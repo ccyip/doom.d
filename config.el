@@ -14,11 +14,20 @@
   (evil-snipe-mode -1)
   (evil-snipe-override-mode -1))
 
-(after! company-coq
-  (map! :map coq-mode-map
+(setq proof-splash-seen t
+      company-coq-disabled-features '(hello))
+(after! pg-user
+  (map! :map proof-mode-map
         "<f2>" #'proof-undo-last-successful-command
         "<f3>" #'proof-assert-next-command-interactive
-        "<f4>" #'company-coq-proof-goto-point))
+        "<f4>" #'proof-goto-point
+
+        :localleader
+        :nmvo "." #'+proof-motion-hydra/body
+        :nmvo "u" #'+proof-motion-hydra/proof-undo-last-successful-command
+        :nmvo "N" #'+proof-motion-hydra/proof-undo-last-successful-command
+        :nmvo "n" #'+proof-motion-hydra/proof-assert-next-command-interactive
+        :nmvo "m" #'+proof-motion-hydra/proof-goto-point))
 
 (after! tex
   (add-hook 'LaTeX-mode-hook
