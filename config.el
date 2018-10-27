@@ -48,8 +48,7 @@
         (:map yas-minor-mode-map
           :v [tab] #'indent-for-tab-command))
 
-      (:after evil-surround
-        :v "s" #'evil-surround-region))
+      :v "s" #'evil-surround-region)
 
 (map! :leader
       :desc "Describe bindings" :n "?" #'counsel-descbinds)
