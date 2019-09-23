@@ -1,89 +1,78 @@
-;;; config.el -*- lexical-binding: t; -*-
+;;; -*- lexical-binding: t; -*-
 
-(setq-default
- doom-theme 'doom-one
- doom-font (font-spec :family "Fira Code" :size 15)
- ;; doom-font (font-spec :family "Source Code Pro" :size 15)
- ;; doom-font (font-spec :family "Dejavu Sans Mono" :size 15)
- doom-big-font (font-spec :family "Fira Code" :size 20)
- doom-inhibit-indent-detection t
- +pretty-code-enabled-modes '(not coq-mode)
- evil-want-abbrev-expand-on-insert-exit nil
- +evil-want-o/O-to-continue-comments nil)
+(setq doom-font (font-spec :family "Fira Code" :size 15)
+      ;; doom-inhibit-indent-detection t
+      +evil-want-o/O-to-continue-comments nil
+      display-line-numbers-type nil
+      flycheck-global-modes nil
+      custom-file (concat doom-private-dir "custom.el"))
+
+(when (file-exists-p custom-file)
+  (load! custom-file))
+
+(progn
+ (set-fontset-font t 'unicode (font-spec :family "Symbola"))
+ (set-fontset-font t 'unicode (font-spec :family "Noto Sans Mono") nil 'prepend)
+ (set-fontset-font t 'unicode (font-spec :family "Source Code Pro") nil 'prepend)
+ (set-fontset-font t 'unicode (font-spec :family "Fira Code") nil 'prepend))
 
 (after! evil-snipe
-  (evil-snipe-mode -1)
-  (evil-snipe-override-mode -1))
+  (evil-snipe-mode -1))
 
-(setq proof-splash-seen t
-      company-coq-disabled-features '(hello))
-(after! pg-user
-  (map! :map proof-mode-map
-        "<f2>" #'proof-undo-last-successful-command
-        "<f3>" #'proof-assert-next-command-interactive
-        "<f4>" #'proof-goto-point
+(map! :n "M-t" #'transpose-words
+      ;; :nv [tab] #'indent-for-tab-command
+      :gnvime "M-;" #'comment-dwim)
 
-        :localleader
-        :nmvo "." #'+proof-motion-hydra/body
-        :nmvo "u" #'+proof-motion-hydra/proof-undo-last-successful-command
-        :nmvo "N" #'+proof-motion-hydra/proof-undo-last-successful-command
-        :nmvo "n" #'+proof-motion-hydra/proof-assert-next-command-interactive
-        :nmvo "m" #'+proof-motion-hydra/proof-goto-point))
+;; TODO: fix embrace
+;; TODO: italic face
+(after! latex
+  ;; FIXME: find a better way
+  (remove-hook 'latex-mode-local-vars-hook #'flyspell-mode!)
 
-(after! tex
   (add-hook 'LaTeX-mode-hook
             (lambda ()
               (LaTeX-add-environments
                '("IEEEeqnarray" LaTeX-env-label)
-               '("IEEEeqnarray*" LaTeX-env-label))
+               '("IEEEeqnarray*" LaTeX-env-label)
+               '("mathpar" LaTeX-env-label)
+               '("mathpar*" LaTeX-env-label))
               (add-to-list 'font-latex-math-environments "IEEEeqnarray")
-              (add-to-list 'font-latex-math-environments "IEEEeqnarray*")))
+              (add-to-list 'font-latex-math-environments "IEEEeqnarray*")
+              (add-to-list 'font-latex-math-environments "mathpar")
+              (add-to-list 'font-latex-math-environments "mathpar*")))
   (customize-set-variable 'reftex-label-alist
                           '(("IEEEeqnarray" ?e nil nil t)
                             ("IEEEeqnarray*" ?e nil nil t)))
   (customize-set-variable 'texmathp-tex-commands
                           '(("IEEEeqnarray" env-on)
-                            ("IEEEeqnarray*" env-on)
-                            ("\\inference" arg-on)))
-  (customize-set-variable 'font-latex-match-math-command-keywords
-                          '(("inference" "[{{"))))
+                            ("IEEEeqnarray*" env-on))))
+(map! :after latex
+      :map LaTeX-mode-map
+      :localleader
+      "m" #'TeX-command-run-all
+      "e" #'LaTeX-environment)
 
-
-(map! [remap describe-bindings] #'counsel-descbinds
-      :nv [tab] #'indent-for-tab-command
-      :n "M-t" #'transpose-words
-      :gnvime "M-;" #'comment-dwim
-
-      (:after yasnippet
-        (:map yas-minor-mode-map
-          :v [tab] #'indent-for-tab-command))
-
-      :v "s" #'evil-surround-region)
-
-(map! :leader
-      :desc "Describe bindings" :n "?" #'counsel-descbinds)
-
-(when (featurep! :feature evil +everywhere)
-  (evil-define-key* 'insert 'global
-    "\C-b" #'backward-char
-    "\C-f" #'forward-char
-    [M-backspace] #'backward-kill-word)
-
-  (define-key! evil-ex-completion-map
-    "\C-b" #'backward-char
-    "\C-f" #'forward-char))
-
-(defun +my|fix-minibuffer-in-map (map)
-  (define-key! map
-    "\C-b" #'backward-char
-    "\C-f" #'forward-char))
-
-(mapc #'+my|fix-minibuffer-in-map
-      (list minibuffer-local-map
-            minibuffer-local-ns-map
-            minibuffer-local-completion-map
-            minibuffer-local-must-match-map
-            minibuffer-local-isearch-map
-            read-expression-map))
-
-(after! ivy (+my|fix-minibuffer-in-map ivy-minibuffer-map))
+(setq proof-splash-seen t
+      ;; proof-electric-terminator-enable nil
+      company-coq-disabled-features '(hello))
+(map! :after pg-user
+      :map proof-mode-map
+      "<f2>" #'proof-undo-last-successful-command
+      "<f3>" #'proof-assert-next-command-interactive
+      "<f4>" #'proof-goto-point
+      :localleader
+      "m" #'+pg/hydra/proof-goto-point
+      "." #'+pg/hydra/proof-goto-point
+      "k" #'+pg/hydra/proof-undo-last-successful-command
+      "[" #'+pg/hydra/proof-undo-last-successful-command
+      "j" #'+pg/hydra/proof-assert-next-command-interactive
+      "]" #'+pg/hydra/proof-assert-next-command-interactive
+      (:prefix ("s" . "store")
+        "b" #'proof-store-buffer-win
+        "g" #'proof-store-goals-win
+        "r" #'proof-store-response-win))
+(map! :after coq-mode
+      :map coq-mode-map
+      :localleader
+      (:prefix "a"
+        "n" #'coq-LocateNotation))

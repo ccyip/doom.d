@@ -1,19 +1,17 @@
-;;; autoload/pg.el -*- lexical-binding: t; -*-
+;;; -*- lexical-binding: t; -*-
 
-(setq-default +nav-flash-exclude-commands
-              (append '(proof-undo-last-successful-command
-                        proof-assert-next-command-interactive
-                        proof-goto-point)
-                      +nav-flash-exclude-commands))
-
-;;;###autoload (autoload '+proof-motion-hydra/body "autoload/pg" nil nil)
-;;;###autoload (autoload '+proof-motion-hydra/proof-undo-last-successful-command "autoload/pg" nil nil)
-;;;###autoload (autoload '+proof-motion-hydra/proof-assert-next-command-interactive "autoload/pg" nil nil)
-;;;###autoload (autoload '+proof-motion-hydra/proof-goto-point "autoload/pg" nil nil)
-(defhydra +proof-motion-hydra (:hint nil :foreign-keys run)
-  "action"
-  ("u" proof-undo-last-successful-command "Undo last command")
-  ("N" proof-undo-last-successful-command "Undo last command")
-  ("n" proof-assert-next-command-interactive "Process next command")
-  ("m" proof-goto-point "Goto point")
-  ("q" nil "quit"))
+;;;###autoload (autoload '+pg/hydra/body "autoload/pg" nil nil)
+;;;###autoload (autoload '+pg/hydra/proof-undo-last-successful-command "autoload/pg" nil nil)
+;;;###autoload (autoload '+pg/hydra/proof-assert-next-command-interactive "autoload/pg" nil nil)
+;;;###autoload (autoload '+pg/hydra/proof-goto-point "autoload/pg" nil nil)
+(defhydra +pg/hydra (:hint nil)
+  "
+[_m_/_._]: goto point [_j_/_]_]: process next command [_k_/_[_]: undo last command [_q_]: quit
+"
+  ("m" proof-goto-point)
+  ("." proof-goto-point)
+  ("k" proof-undo-last-successful-command)
+  ("[" proof-undo-last-successful-command)
+  ("j" proof-assert-next-command-interactive)
+  ("]" proof-assert-next-command-interactive)
+  ("q" nil :exit t))

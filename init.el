@@ -1,80 +1,67 @@
-;;; init.el -*- lexical-binding: t; -*-
+;;; -*- lexical-binding: t; -*-
 
-(doom! :feature
-       debugger
-       eval
-       (evil
-        +everywhere)
-       file-templates
-       (lookup
-        +docsets)
-       snippets
-       spellcheck
-       workspaces
-
-       :completion
-       (company
-        +auto)
+(doom! :completion
+       company
        ivy
 
        :ui
        doom
        doom-dashboard
-       doom-modeline
        doom-quit
-       evil-goggles
        hl-todo
-       nav-flash
-       treemacs
-       (popup
-        +all
-        +defaults)
-       vc-gutter
+       modeline
+       ;;nav-flash
+       ophints
+       (popup +all +defaults)
+       ;;pretty-code
        vi-tilde-fringe
        window-select
-       pretty-code
+       workspaces
 
        :editor
+       (evil +everywhere)
+       fold
+       ;; lispy
        multiple-cursors
+       ;;objed
+       ;;parinfer
        rotate-text
+       snippets
 
        :emacs
        dired
-       ediff
        electric
-       hideshow
-       imenu
        vc
 
        :tools
+       ;;debugger
        editorconfig
+       eval
+       flycheck
+       flyspell
+       (lookup +docsets)
+       ;;lsp
        magit
-       pdf
+       ;;pdf
 
        :lang
-       cc
+       ;;agda
+       ;;cc
        coq
        data
        emacs-lisp
-       (haskell
-        +intero)
-       (latex
-        +latexmk)
+       ;;haskell
+       ;;idris
+       ;;javascript
+       (latex +latexmk)
+       ;;lean
        markdown
-       ocaml
-       (org
-        +attach
-        +babel
-        +capture
-        +export
-        +present)
-       python
-       rust
-       (sh
-        +fish)
+       ;;ocaml
+       org
+       ;;python
+       ;;rust
+       ;;scala
+       (sh +fish)
 
        :config
-       (default
-         +bindings
-         +snippets
-         +evil-commands))
+       (default +bindings +smartparens))
