@@ -1,6 +1,7 @@
 ;;; -*- lexical-binding: t; -*-
 
 (setq doom-font (font-spec :family "Fira Code" :size 15)
+      doom-unicode-font nil
       ;; doom-inhibit-indent-detection t
       +evil-want-o/O-to-continue-comments nil
       display-line-numbers-type nil
@@ -10,11 +11,13 @@
 (when (file-exists-p custom-file)
   (load! custom-file))
 
-(progn
- (set-fontset-font t 'unicode (font-spec :family "Symbola"))
- (set-fontset-font t 'unicode (font-spec :family "Noto Sans Mono") nil 'prepend)
- (set-fontset-font t 'unicode (font-spec :family "Source Code Pro") nil 'prepend)
- (set-fontset-font t 'unicode (font-spec :family "Fira Code") nil 'prepend))
+(add-hook! 'doom-load-theme-hook :append
+  (defun +init-unicode-font ()
+    (progn
+      (set-fontset-font t 'unicode (font-spec :family "Symbola"))
+      (set-fontset-font t 'unicode (font-spec :family "Noto Sans Mono") nil 'prepend)
+      (set-fontset-font t 'unicode (font-spec :family "Source Code Pro") nil 'prepend)
+      (set-fontset-font t 'unicode (font-spec :family "Fira Code") nil 'prepend))))
 
 (after! evil-snipe
   (evil-snipe-mode -1))
