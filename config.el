@@ -23,7 +23,7 @@
   (evil-snipe-mode -1))
 
 (map! :n "M-t" #'transpose-words
-      ;; :nv [tab] #'indent-for-tab-command
+      :nv [tab] #'indent-for-tab-command
       :gnvime "M-;" #'comment-dwim)
 
 ;; TODO: fix embrace
