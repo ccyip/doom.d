@@ -66,9 +66,9 @@
       :localleader
       "m" #'+pg/hydra/proof-goto-point
       "." #'+pg/hydra/proof-goto-point
-      "k" #'+pg/hydra/proof-undo-last-successful-command
+      "N" #'+pg/hydra/proof-undo-last-successful-command
       "[" #'+pg/hydra/proof-undo-last-successful-command
-      "j" #'+pg/hydra/proof-assert-next-command-interactive
+      "n" #'+pg/hydra/proof-assert-next-command-interactive
       "]" #'+pg/hydra/proof-assert-next-command-interactive
       (:prefix ("s" . "store")
         "b" #'proof-store-buffer-win

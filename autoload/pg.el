@@ -6,12 +6,12 @@
 ;;;###autoload (autoload '+pg/hydra/proof-goto-point "autoload/pg" nil nil)
 (defhydra +pg/hydra (:hint nil)
   "
-[_m_/_._]: goto point [_j_/_]_]: process next command [_k_/_[_]: undo last command [_q_]: quit
+[_m_/_._]: goto point [_n_/_]_]: process next command [_N_/_[_]: undo last command [_q_]: quit
 "
   ("m" proof-goto-point)
   ("." proof-goto-point)
-  ("k" proof-undo-last-successful-command)
+  ("N" proof-undo-last-successful-command)
   ("[" proof-undo-last-successful-command)
-  ("j" proof-assert-next-command-interactive)
+  ("n" proof-assert-next-command-interactive)
   ("]" proof-assert-next-command-interactive)
   ("q" nil :exit t))
