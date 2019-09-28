@@ -1,6 +1,6 @@
 ;;; -*- lexical-binding: t; -*-
 
-(setq doom-font (font-spec :family "Fira Code" :size 15)
+(setq doom-font (font-spec :family "Source Code Pro" :size 15)
       doom-unicode-font nil
       ;; doom-inhibit-indent-detection t
       +evil-want-o/O-to-continue-comments nil
@@ -16,8 +16,7 @@
     (progn
       (set-fontset-font t 'unicode (font-spec :family "Symbola"))
       (set-fontset-font t 'unicode (font-spec :family "Noto Sans Mono") nil 'prepend)
-      (set-fontset-font t 'unicode (font-spec :family "Source Code Pro") nil 'prepend)
-      (set-fontset-font t 'unicode (font-spec :family "Fira Code") nil 'prepend))))
+      (set-fontset-font t 'unicode (font-spec :family "Source Code Pro") nil 'prepend))))
 
 (after! evil-snipe
   (evil-snipe-mode -1))
@@ -27,7 +26,6 @@
       :gnvime "M-;" #'comment-dwim)
 
 ;; TODO: fix embrace
-;; TODO: italic face
 (after! latex
   ;; FIXME: find a better way
   (remove-hook 'latex-mode-local-vars-hook #'flyspell-mode!)
@@ -56,7 +54,7 @@
       "e" #'LaTeX-environment)
 
 (setq proof-splash-seen t
-      ;; proof-electric-terminator-enable nil
+      proof-electric-terminator-enable nil
       company-coq-disabled-features '(hello))
 (map! :after pg-user
       :map proof-mode-map
