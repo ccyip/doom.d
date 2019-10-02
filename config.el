@@ -6,6 +6,7 @@
       +evil-want-o/O-to-continue-comments nil
       display-line-numbers-type nil
       flycheck-global-modes nil
+      company-backends '(company-capf company-dabbrev)
       custom-file (concat doom-private-dir "custom.el"))
 
 (when (file-exists-p custom-file)
