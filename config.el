@@ -14,10 +14,9 @@
 
 (add-hook! 'doom-load-theme-hook :append
   (defun +init-unicode-font ()
-    (progn
-      (set-fontset-font t 'unicode (font-spec :family "Symbola"))
-      (set-fontset-font t 'unicode (font-spec :family "Noto Sans Mono") nil 'prepend)
-      (set-fontset-font t 'unicode (font-spec :family "Source Code Pro") nil 'prepend))))
+    (set-fontset-font t 'unicode (font-spec :family "Symbola"))
+    (set-fontset-font t 'unicode (font-spec :family "Noto Sans Mono") nil 'prepend)
+    (set-fontset-font t 'unicode (font-spec :family "Source Code Pro") nil 'prepend)))
 
 (after! evil-snipe
   (evil-snipe-mode -1))
