@@ -3,7 +3,9 @@
 (setq doom-font (font-spec :family "Source Code Pro" :size 15)
       doom-unicode-font nil
       ;; doom-inhibit-indent-detection t
+      ivy-extra-directories nil
       +evil-want-o/O-to-continue-comments nil
+      evil-want-fine-undo t
       display-line-numbers-type nil
       flycheck-global-modes nil
       company-backends '(company-capf company-dabbrev)
@@ -22,6 +24,8 @@
   (evil-snipe-mode -1))
 
 (map! :n "M-t" #'transpose-words
+      :n "C-t" #'pop-tag-mark
+      :nv "gy" #'evilnc-copy-and-comment-operator
       :nv [tab] #'indent-for-tab-command
       :gnvime "M-;" #'comment-dwim)
 
