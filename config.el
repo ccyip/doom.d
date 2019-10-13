@@ -25,22 +25,31 @@
       :nv [tab] #'indent-for-tab-command
       :gnvime "M-;" #'comment-dwim)
 
-;; TODO: fix embrace
 (after! latex
   ;; FIXME: find a better way
   (remove-hook 'latex-mode-local-vars-hook #'flyspell-mode!)
 
-  (add-hook 'LaTeX-mode-hook
-            (lambda ()
-              (LaTeX-add-environments
-               '("IEEEeqnarray" LaTeX-env-label)
-               '("IEEEeqnarray*" LaTeX-env-label)
-               '("mathpar" LaTeX-env-label)
-               '("mathpar*" LaTeX-env-label))
-              (add-to-list 'font-latex-math-environments "IEEEeqnarray")
-              (add-to-list 'font-latex-math-environments "IEEEeqnarray*")
-              (add-to-list 'font-latex-math-environments "mathpar")
-              (add-to-list 'font-latex-math-environments "mathpar*")))
+  (defadvice! +latex--re-indent-itemize-and-enumerate-a (orig-fn &rest args)
+    :around #'LaTeX-fill-region-as-para-do
+    (let ((LaTeX-indent-environment-list LaTeX-indent-environment-list))
+      (add-to-list 'LaTeX-indent-environment-list '("itemize" +latex/LaTeX-indent-item))
+      (add-to-list 'LaTeX-indent-environment-list '("enumerate" +latex/LaTeX-indent-item))
+      (apply orig-fn args)))
+
+  (add-hook 'LaTeX-mode-hook #'+latex/add-textobjects)
+
+  (add-hook! 'LaTeX-mode-hook
+    (defun +latex/math-environments ()
+      (LaTeX-add-environments
+       '("IEEEeqnarray" LaTeX-env-label)
+       '("IEEEeqnarray*" LaTeX-env-label)
+       '("mathpar" LaTeX-env-label)
+       '("mathpar*" LaTeX-env-label))
+      (add-to-list 'font-latex-math-environments "IEEEeqnarray")
+      (add-to-list 'font-latex-math-environments "IEEEeqnarray*")
+      (add-to-list 'font-latex-math-environments "mathpar")
+      (add-to-list 'font-latex-math-environments "mathpar*")))
+
   (customize-set-variable 'reftex-label-alist
                           '(("IEEEeqnarray" ?e nil nil t)
                             ("IEEEeqnarray*" ?e nil nil t)))
