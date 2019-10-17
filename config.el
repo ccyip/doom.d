@@ -23,10 +23,11 @@
   (evil-snipe-mode -1))
 
 (map! :n "M-t" #'transpose-words
-      :n "C-t" #'pop-tag-mark
+      :nm "C-t" #'pop-tag-mark
       :nv "gy" #'evilnc-copy-and-comment-operator
+      :m "C-S-o" #'better-jumper-jump-forward
       :nv [tab] #'indent-for-tab-command
-      :gnvime "M-;" #'comment-dwim)
+      :g "M-;" #'comment-dwim)
 
 (after! latex
   ;; FIXME: find a better way
