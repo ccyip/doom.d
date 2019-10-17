@@ -29,10 +29,18 @@
       :nv [tab] #'indent-for-tab-command
       :g "M-;" #'comment-dwim)
 
+(defvar +latex/math-environments '("IEEEeqnarray" "IEEEeqnarray*" "mathpar" "mathpar*"))
+
+(setq texmathp-tex-commands
+      (seq-map (lambda (e) `(,e env-on)) +latex/math-environments))
+(setq reftex-label-alist
+      (seq-map (lambda (e) `(,e ?e nil nil t)) +latex/math-environments))
 (after! latex
+  ;; FIXME: reftex completion
   ;; FIXME: find a better way
   (remove-hook 'latex-mode-local-vars-hook #'flyspell-mode!)
 
+  ;; FIXME: indent for item
   (defadvice! +latex--re-indent-itemize-and-enumerate-a (orig-fn &rest args)
     :around #'LaTeX-fill-region-as-para-do
     (let ((LaTeX-indent-environment-list LaTeX-indent-environment-list))
@@ -40,26 +48,14 @@
       (add-to-list 'LaTeX-indent-environment-list '("enumerate" +latex/LaTeX-indent-item))
       (apply orig-fn args)))
 
-  (add-hook 'LaTeX-mode-hook #'+latex/add-textobjects)
-
   (add-hook! 'LaTeX-mode-hook
-    (defun +latex/math-environments ()
-      (LaTeX-add-environments
-       '("IEEEeqnarray" LaTeX-env-label)
-       '("IEEEeqnarray*" LaTeX-env-label)
-       '("mathpar" LaTeX-env-label)
-       '("mathpar*" LaTeX-env-label))
-      (add-to-list 'font-latex-math-environments "IEEEeqnarray")
-      (add-to-list 'font-latex-math-environments "IEEEeqnarray*")
-      (add-to-list 'font-latex-math-environments "mathpar")
-      (add-to-list 'font-latex-math-environments "mathpar*")))
+    (defun +latex/add-math-environments ()
+      (apply #'LaTeX-add-environments
+             (seq-map (lambda (e) `(,e LaTeX-env-label)) +latex/math-environments))
+      (prependq! font-latex-math-environments +latex/math-environments)))
 
-  (customize-set-variable 'reftex-label-alist
-                          '(("IEEEeqnarray" ?e nil nil t)
-                            ("IEEEeqnarray*" ?e nil nil t)))
-  (customize-set-variable 'texmathp-tex-commands
-                          '(("IEEEeqnarray" env-on)
-                            ("IEEEeqnarray*" env-on))))
+  (add-hook! 'LaTeX-mode-hook (auto-fill-mode -1))
+  (add-hook! 'LaTeX-mode-hook #'LaTeX-math-mode #'+latex/add-textobjects))
 (map! :after latex
       :map LaTeX-mode-map
       :localleader
