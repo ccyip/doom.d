@@ -5,10 +5,9 @@
       ;; doom-inhibit-indent-detection t
       ivy-extra-directories nil
       +evil-want-o/O-to-continue-comments nil
-      evil-want-fine-undo t
+      ;; evil-want-fine-undo t
       display-line-numbers-type nil
       flycheck-global-modes nil
-      company-backends '(company-capf company-dabbrev)
       custom-file (concat doom-private-dir "custom.el"))
 
 (when (file-exists-p custom-file)
