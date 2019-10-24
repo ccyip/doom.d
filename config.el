@@ -21,6 +21,9 @@
 (after! evil-snipe
   (evil-snipe-mode -1))
 
+;; FIXME: find a better way to disable flyspell-mode
+(remove-hook 'text-mode-hook #'flyspell-mode)
+
 (map! :n "M-t" #'transpose-words
       :nm "C-t" #'pop-tag-mark
       :nv "gy" #'evilnc-copy-and-comment-operator
@@ -36,16 +39,11 @@
       (seq-map (lambda (e) `(,e ?e nil nil t)) +latex/math-environments))
 (after! latex
   ;; FIXME: reftex completion
-  ;; FIXME: find a better way
-  (remove-hook 'latex-mode-local-vars-hook #'flyspell-mode!)
+  ;; FIXME: next error
+  ;; FIXME: synctex
 
-  ;; FIXME: indent for item
-  (defadvice! +latex--re-indent-itemize-and-enumerate-a (orig-fn &rest args)
-    :around #'LaTeX-fill-region-as-para-do
-    (let ((LaTeX-indent-environment-list LaTeX-indent-environment-list))
-      (add-to-list 'LaTeX-indent-environment-list '("itemize" +latex/LaTeX-indent-item))
-      (add-to-list 'LaTeX-indent-environment-list '("enumerate" +latex/LaTeX-indent-item))
-      (apply orig-fn args)))
+  ;; FIXME: find a better way to disable flyspell-mode
+  (remove-hook 'latex-mode-local-vars-hook #'flyspell-mode!)
 
   (add-hook! 'LaTeX-mode-hook
     (defun +latex/add-math-environments ()
@@ -53,8 +51,11 @@
              (seq-map (lambda (e) `(,e LaTeX-env-label)) +latex/math-environments))
       (prependq! font-latex-math-environments +latex/math-environments)))
 
-  (add-hook! 'LaTeX-mode-hook (auto-fill-mode -1))
-  (add-hook! 'LaTeX-mode-hook #'LaTeX-math-mode #'+latex/add-textobjects))
+  (add-hook! 'LaTeX-mode-hook
+             #'turn-off-auto-fill
+             #'LaTeX-math-mode
+             #'+latex/add-textobjects))
+;; TODO: add more keybindings
 (map! :after latex
       :map LaTeX-mode-map
       :localleader
