@@ -3,7 +3,6 @@
 (setq doom-font (font-spec :family "Source Code Pro" :size 15)
       doom-unicode-font nil
       ;; doom-inhibit-indent-detection t
-      ivy-extra-directories nil
       +evil-want-o/O-to-continue-comments nil
       ;; evil-want-fine-undo t
       display-line-numbers-type nil
