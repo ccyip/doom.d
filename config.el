@@ -21,7 +21,6 @@
 (after! evil-snipe
   (evil-snipe-mode -1))
 
-;; FIXME: find a better way to disable flyspell-mode
 (remove-hook 'text-mode-hook #'flyspell-mode)
 
 (map! :n "M-t" #'transpose-words
@@ -31,6 +30,7 @@
       :nv [tab] #'indent-for-tab-command
       :g "M-;" #'comment-dwim)
 
+;; Latex
 (defvar +latex/math-environments '("IEEEeqnarray" "IEEEeqnarray*" "mathpar" "mathpar*"))
 
 (setq texmathp-tex-commands
@@ -41,9 +41,6 @@
   ;; FIXME: reftex completion
   ;; FIXME: next error
   ;; FIXME: synctex
-
-  ;; FIXME: find a better way to disable flyspell-mode
-  (remove-hook 'latex-mode-local-vars-hook #'flyspell-mode!)
 
   (add-hook! 'LaTeX-mode-hook
     (defun +latex/add-math-environments ()
@@ -62,6 +59,7 @@
       "m" #'TeX-command-run-all
       "e" #'LaTeX-environment)
 
+;; Coq
 (setq proof-splash-seen t
       proof-electric-terminator-enable nil
       company-coq-disabled-features '(hello))
