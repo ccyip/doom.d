@@ -34,9 +34,9 @@
 (defvar +latex/math-environments '("IEEEeqnarray" "IEEEeqnarray*" "mathpar" "mathpar*"))
 
 (setq texmathp-tex-commands
-      (seq-map (lambda (e) `(,e env-on)) +latex/math-environments))
+      (mapcar (lambda (e) `(,e env-on)) +latex/math-environments))
 (setq reftex-label-alist
-      (seq-map (lambda (e) `(,e ?e nil nil t)) +latex/math-environments))
+      (mapcar (lambda (e) `(,e ?e nil nil t)) +latex/math-environments))
 (after! latex
   ;; FIXME: reftex completion
   ;; FIXME: next error
@@ -45,7 +45,7 @@
   (add-hook! 'LaTeX-mode-hook
     (defun +latex/add-math-environments ()
       (apply #'LaTeX-add-environments
-             (seq-map (lambda (e) `(,e LaTeX-env-label)) +latex/math-environments))
+             (mapcar (lambda (e) `(,e LaTeX-env-label)) +latex/math-environments))
       (prependq! font-latex-math-environments +latex/math-environments)))
 
   (add-hook! 'LaTeX-mode-hook
