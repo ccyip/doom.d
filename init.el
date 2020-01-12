@@ -21,7 +21,7 @@
        :editor
        (evil +everywhere)
        fold
-       ;; lispy
+       ;;lispy
        multiple-cursors
        ;;objed
        ;;parinfer
@@ -33,12 +33,15 @@
        electric
        vc
 
+       :checkers
+       syntax
+       spell
+       ;;grammar
+
        :tools
        ;;debugger
        editorconfig
-       eval
-       flycheck
-       flyspell
+       (eval +overlay)
        (lookup +docsets)
        ;;lsp
        magit
@@ -50,7 +53,7 @@
        coq
        data
        emacs-lisp
-       ;;haskell
+       haskell
        ;;idris
        ;;javascript
        (latex +latexmk)
