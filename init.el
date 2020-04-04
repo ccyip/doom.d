@@ -17,10 +17,12 @@
        vi-tilde-fringe
        window-select
        workspaces
+       zen
 
        :editor
        (evil +everywhere)
        fold
+       ;;format
        ;;lispy
        multiple-cursors
        ;;objed
@@ -44,6 +46,7 @@
        (eval +overlay)
        (lookup +docsets)
        ;;lsp
+       ;;macos
        magit
        ;;pdf
 
