@@ -30,5 +30,6 @@
       :nv [tab] #'indent-for-tab-command
       :g "M-;" #'comment-dwim)
 
+(load! "+textobjects")
 (load! "+latex")
 (load! "+coq")
