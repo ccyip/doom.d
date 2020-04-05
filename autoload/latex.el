@@ -60,18 +60,14 @@
         (concat "\\\\\\(input[^{]*{" filename "}"))))))
 
 (defun +latex--get-parent-of (filename dir)
-  (let ((parent nil)
-        (files (directory-files dir nil "\\.\\(tex\\|sty\\)" t)))
-    (while files
-      (let ((file (car files)))
-        (setq files (cdr files))
+  (let ((files (directory-files dir nil "\\.\\(tex\\|sty\\)" t)))
+    (catch 'done
+      (dolist (file files nil)
         (when (not (+latex--guess-master-excluded file))
           (with-temp-buffer
             (insert-file-contents file)
             (when (+latex--buf-is-parent-of filename)
-              (setq parent (cons file (+latex--buf-is-master))
-                    files nil))))))
-    parent))
+              (throw 'done (cons file (+latex--buf-is-master))))))))))
 
 (defun +latex--guess-TeX-master-file ()
   (let ((master nil)
