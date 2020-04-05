@@ -52,7 +52,8 @@
   (add-hook! 'LaTeX-mode-hook
              #'turn-off-auto-fill
              #'LaTeX-math-mode
-             #'+latex-add-textobjects-h)
+             #'evil-latex-textobjects-setup
+             #'+latex-setup-surround-h)
   (add-hook! 'latex-mode-local-vars-hook
              #'+latex-maybe-guess-TeX-master-h))
 (map! :after latex
