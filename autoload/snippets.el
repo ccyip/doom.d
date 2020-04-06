@@ -1,5 +1,6 @@
 ;;; -*- lexical-binding: t; -*-
 
+;;;###autoload
 (defvaralias '% 'yas-selected-text)
 
 ;;;###autoload
