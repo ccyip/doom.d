@@ -45,14 +45,14 @@
        editorconfig
        (eval +overlay)
        (lookup +docsets)
-       ;;lsp
-       ;;macos
+       lsp
+       macos
        magit
        ;;pdf
 
        :lang
-       ;;agda
-       ;;cc
+       agda
+       ;; cc
        coq
        data
        emacs-lisp
@@ -60,13 +60,13 @@
        ;;idris
        ;;javascript
        (latex +latexmk)
-       ;;lean
+       lean
        markdown
-       ;;ocaml
+       ocaml
        org
-       ;;python
-       ;;rust
-       ;;scala
+       python
+       rust
+       scala
        (sh +fish)
 
        :config
