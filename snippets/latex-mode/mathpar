@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: mathpar
+# key: \mp
+# --
+\begin{mathpar}
+
+`%`$0
+
+\end{mathpar}

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: textnormal
+# key: \tno
+# --
+\textnormal{`%`$1}$0

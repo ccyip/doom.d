@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: lemma
+# key: \lem
+# --
+\begin{lemma}${1:$(+snippets-link-string "[")}${1:name}${1:$(+snippets-link-string "]")}
+`%`$0
+\end{lemma}

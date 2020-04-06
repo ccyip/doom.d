@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: subsubsection
+# key: \sss
+# --
+\subsubsection{$1}
+\label{subsubsec:$2}
+
+$0

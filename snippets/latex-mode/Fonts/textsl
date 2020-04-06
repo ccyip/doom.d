@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: textsl
+# key: \tsl
+# --
+\textsl{`%`$1}$0

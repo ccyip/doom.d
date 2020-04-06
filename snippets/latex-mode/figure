@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: figure
+# key: \fig
+# --
+\begin{figure}${1:$(+snippets-link-string "[")}${1:h}${1:$(+snippets-link-string "]")}
+  \centering
+  `%`$0
+
+  \caption{$2}
+  \label{fig:$3}
+\end{figure}

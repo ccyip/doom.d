@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: mathit
+# key: \mit
+# --
+\mathit{`%`$1}$0

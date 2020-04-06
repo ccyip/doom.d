@@ -6,7 +6,7 @@
       ;; doom-inhibit-indent-detection t
       +evil-want-o/O-to-continue-comments nil
       ;; evil-want-fine-undo t
-      company-idle-delay 0
+      company-idle-delay 0.5
       display-line-numbers-type nil
       flycheck-global-modes nil
       custom-file (concat doom-private-dir "custom.el"))
@@ -27,7 +27,8 @@
 (map! :n "M-t" #'transpose-words
       :n "C-t" #'pop-tag-mark
       :nv "gy" #'evilnc-copy-and-comment-operator
-      :nv [tab] #'indent-for-tab-command
+      :n [tab] #'indent-for-tab-command
+      :v [tab] #'yas-insert-snippet
       :g "M-;" #'comment-dwim)
 
 (load! "+textobjects")

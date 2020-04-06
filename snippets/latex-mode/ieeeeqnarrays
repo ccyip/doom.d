@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: IEEEeqnarray*
+# key: \ie
+# --
+\begin{IEEEeqnarray*}{${1:rCl}}
+`%`$0
+\end{IEEEeqnarray*}
