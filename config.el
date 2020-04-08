@@ -21,9 +21,6 @@
     (set-fontset-font t 'unicode (font-spec :family "Noto Sans Mono") nil 'prepend)
     (set-fontset-font t 'unicode (font-spec :family "Source Code Pro") nil 'prepend)))
 
-(after! evil-snipe
-  (evil-snipe-mode -1))
-
 (map! :n "M-t" #'transpose-words
       :n "C-t" #'pop-tag-mark
       :nv "gy" #'evilnc-copy-and-comment-operator
