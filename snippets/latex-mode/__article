@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name: Article document
+# key: %__article
+# --
+\documentclass{article}
+
+\usepackage{preamble}
+
+\bibliographystyle{plain}
+
+\begin{document}
+
+$0
+
+\end{document}
