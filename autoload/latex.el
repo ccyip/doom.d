@@ -14,9 +14,6 @@
 
 ;;;###autoload
 (defun +latex-setup-surround-h ()
-  (setq +evil-local-inner-text-objects-map evil-latex-textobjects-inner-map
-        +evil-local-outer-text-objects-map evil-latex-textobjects-outer-map)
-
   (after! evil-surround
     (push '(?\" . +latex--surround-quote) evil-surround-pairs-alist)
     (push '(?\\ . ("\\[" . "\\]")) evil-surround-pairs-alist)

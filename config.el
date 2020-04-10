@@ -34,6 +34,5 @@
       [tab] nil
       "C-SPC" #'company-complete-common-or-cycle)
 
-(load! "+textobjects")
 (load! "+latex")
 (load! "+coq")
