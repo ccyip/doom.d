@@ -44,7 +44,7 @@
        ;;debugger
        editorconfig
        (eval +overlay)
-       (lookup +docsets)
+       (lookup +dictionary +docsets)
        lsp
        macos
        magit
