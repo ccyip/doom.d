@@ -22,3 +22,18 @@
       :localleader
       (:prefix "a"
         "n" #'coq-LocateNotation))
+
+;; TODO: remove later. `+company-init-backends-h' in
+;; `after-change-major-mode-hook' overrides `company-backends' set by
+;; `company-coq' package. Until this issue gets fixed upstream, this dirty hack is
+;; needed.
+(defvar-local +coq--company-backends nil)
+(after! company-coq
+  (defun +coq--record-company-backends-h ()
+    (setq +coq--company-backends company-backends))
+  (defun +coq--replay-company-backends-h ()
+    (setq company-backends +coq--company-backends))
+  (add-hook! 'company-coq-mode-hook
+    (defun +coq--fix-company-coq-hack-h ()
+      (add-hook! 'after-change-major-mode-hook :local #'+coq--record-company-backends-h)
+      (add-hook! 'after-change-major-mode-hook :append :local #'+coq--replay-company-backends-h))))
