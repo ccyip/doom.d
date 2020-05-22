@@ -9,7 +9,6 @@
 (after! latex
   (setq-default TeX-master 'guess)
 
-  (unsetq-hook! LaTeX-mode TeX-command-default)
   (remove-hook! TeX-mode #'flyspell-mode)
 
   (add-hook! 'LaTeX-mode-hook
