@@ -109,7 +109,7 @@
      ((stringp master)
       (file-name-sans-extension master))
      (t
-      nil))))
+      t))))
 
 ;;;###autoload
 (defun +latex-maybe-guess-TeX-master-h ()
