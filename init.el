@@ -57,6 +57,7 @@
        coq
        data
        emacs-lisp
+       fstar
        haskell
        ;;idris
        ;;javascript
