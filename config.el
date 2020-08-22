@@ -6,12 +6,8 @@
       ;; evil-want-fine-undo t
       company-idle-delay 0
       display-line-numbers-type nil
-      flycheck-global-modes nil
-      custom-file (concat doom-private-dir "custom.el"))
+      flycheck-global-modes nil)
 ;; (setq-default cursor-in-non-selected-windows t)
-
-(when (file-exists-p custom-file)
-  (load! custom-file))
 
 (map! :n "M-t" #'transpose-words
       :n "C-t" #'pop-tag-mark
