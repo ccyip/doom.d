@@ -20,7 +20,6 @@
   (add-hook! 'LaTeX-mode-hook
              #'turn-off-auto-fill
              #'LaTeX-math-mode
-             #'evil-latex-textobjects-setup
              #'+latex-setup-surround-h)
   (add-hook! 'latex-mode-local-vars-hook
              #'+latex-maybe-guess-TeX-master-h))

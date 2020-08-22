@@ -1,11 +1,6 @@
 ;;; -*- lexical-binding: t; -*-
 
 ;;;###autoload
-(defun +latex--surround-macro ()
-  (let ((macro (evil-surround-read-from-minibuffer "\\")))
-    (cons (format "\\%s{" macro) "}")))
-
-;;;###autoload
 (defun +latex--surround-quote ()
   (if (or (texmathp)
           (TeX-in-comment))
@@ -15,9 +10,7 @@
 ;;;###autoload
 (defun +latex-setup-surround-h ()
   (after! evil-surround
-    (push '(?\" . +latex--surround-quote) evil-surround-pairs-alist)
-    (push '(?\\ . ("\\[" . "\\]")) evil-surround-pairs-alist)
-    (push '(?m . +latex--surround-macro) evil-surround-pairs-alist)))
+    (push '(?\" . +latex--surround-quote) evil-surround-pairs-alist)))
 
 ;;;; Guess TeX-master
 ;; Limitations:
