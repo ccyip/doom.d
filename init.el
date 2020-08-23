@@ -47,9 +47,11 @@
        (eval +overlay)
        (lookup +dictionary +docsets)
        lsp
-       macos
        magit
        ;;pdf
+
+       :os
+       (:if IS-MAC macos)
 
        :lang
        agda
