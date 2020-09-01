@@ -25,3 +25,4 @@
 (load! "+ui")
 (load! "+latex")
 (load! "+coq")
+(load! "+os")
