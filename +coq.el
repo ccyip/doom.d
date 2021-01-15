@@ -33,6 +33,14 @@
        "u" #'coq-unset-printing-universes
        ))
 
+(setq coq-may-use-prettify nil)
+(setq company-coq-prettify-symbols-alist
+      '(("/\\" . ?∧) ("\\/" . ?∨) ("<>" . ?≠)
+        ("True" . ?⊤) ("False" . ?⊥)
+        ("fun" . ?λ) ("forall" . ?∀) ("exists" . ?∃)
+        ("nat" . ?ℕ) ("Prop" . ?ℙ) ("Real" . ?ℝ) ("bool" . ?𝔹)))
+
+
 ;; TODO: remove later. `+company-init-backends-h' in
 ;; `after-change-major-mode-hook' overrides `company-backends' set by
 ;; `company-coq' package. Until this issue gets fixed upstream, this dirty hack is
