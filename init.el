@@ -7,13 +7,13 @@
        :ui
        doom
        doom-dashboard
-       doom-quit
+       ;;doom-quit
        hl-todo
        modeline
        ;;nav-flash
        ophints
        (popup +all +defaults)
-       ;;pretty-code
+       ligatures
        vi-tilde-fringe
        window-select
        workspaces
@@ -60,7 +60,7 @@
        data
        emacs-lisp
        fstar
-       haskell
+       (haskell +dante)
        ;;idris
        ;;javascript
        (latex +latexmk)
@@ -72,6 +72,7 @@
        rust
        scala
        (sh +fish)
+       yaml
 
        :config
        (default +bindings +smartparens))
