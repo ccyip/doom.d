@@ -15,7 +15,7 @@
       "]" #'+pg/hydra/proof-assert-next-command-interactive
       (:prefix "a"
        "n" #'coq-LocateNotation
-       "s" #'coq-search
+       "s" #'coq-Search
        "h" #'coq-PrintHint
        "p" #'coq-show-proof)
       (:prefix ("s" . "store")
