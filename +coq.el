@@ -40,6 +40,15 @@
         ("fun" . ?λ) ("forall" . ?∀) ("exists" . ?∃)
         ("nat" . ?ℕ) ("Prop" . ?ℙ) ("Real" . ?ℝ) ("bool" . ?𝔹)))
 
+(after! coq-mode
+  (sp-with-modes 'coq-mode
+    (sp-local-pair "(*" "*"
+                   :actions '(insert)
+                   :post-handlers '(("| " "SPC") (" | " "*"))
+                   :unless '(sp-point-before-word-p sp-point-before-same-p))
+    (sp-local-pair "<{" "}>"
+                   :post-handlers '(("||\n[i]" "RET") ("| " "SPC"))
+                   :unless '(sp-point-before-word-p sp-point-before-same-p))))
 
 ;; TODO: remove later. `+company-init-backends-h' in
 ;; `after-change-major-mode-hook' overrides `company-backends' set by
