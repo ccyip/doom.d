@@ -43,7 +43,7 @@
 
        :tools
        ;;debugger
-       editorconfig
+       ;;editorconfig
        (eval +overlay)
        (lookup +dictionary +docsets)
        lsp
@@ -54,23 +54,23 @@
        (:if IS-MAC macos)
 
        :lang
-       agda
-       ;; cc
+       ;;agda
+       ;;cc
        coq
        data
        emacs-lisp
-       fstar
-       (haskell +dante)
+       ;;fstar
+       ;;(haskell +dante)
        ;;idris
        ;;javascript
        (latex +latexmk)
-       lean
+       ;;lean
        markdown
        ocaml
-       org
+       ;;org
        python
-       rust
-       scala
+       ;;rust
+       ;;scala
        (sh +fish)
        yaml
 
