@@ -1,13 +1,23 @@
 ;;; -*- lexical-binding: t; -*-
 
-(setq doom-font (font-spec :family "Source Code Pro"
-                           :size 15)
-      doom-unicode-font nil)
+(add-hook 'window-setup-hook #'toggle-frame-maximized)
+
+(setq +font-source-code-pro (font-spec :family "Source Code Pro" :size 18))
+(setq +font-jetbrains-mono (font-spec :family "JetBrains Mono" :size 18))
+(setq +font-cascadia-code (font-spec :family "Cascadia Code" :size 18))
+(setq +font-victor-mono (font-spec :family "Victor Mono" :size 18))
+(setq +font-fira-code (font-spec :family "Fira Code" :size 18))
+(setq +font-stix (font-spec :family "STIX Two Math"))
+
+(setq doom-font +font-jetbrains-mono
+      doom-unicode-font +font-stix)
 
 (add-hook! 'doom-load-theme-hook :append
   (defun +ui-init-unicode-font-h ()
     (set-fontset-font t 'unicode doom-font)
-    (set-fontset-font t 'unicode
-                      (font-spec :family "STIX Two Math") nil 'append)))
+    (set-fontset-font t 'unicode doom-unicode-font nil 'append)))
 
-(add-hook 'window-setup-hook #'toggle-frame-maximized)
+;; (defun +font-test (font)
+;;   (setq doom-font font)
+;;   (set-frame-font doom-font)
+;;   (+ui-init-unicode-font-h))
