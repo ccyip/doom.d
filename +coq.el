@@ -1,5 +1,7 @@
 ;;; -*- lexical-binding: t; -*-
 
+(pushnew! doom-detect-indentation-excluded-modes 'coq-mode)
+
 (setq proof-splash-seen t)
 (map! :after coq-mode
       :map coq-mode-map
@@ -49,6 +51,8 @@
     (sp-local-pair "<{" "}>"
                    :post-handlers '(("||\n[i]" "RET") ("| " "SPC"))
                    :unless '(sp-point-before-word-p sp-point-before-same-p))))
+
+(add-to-list 'auto-mode-alist '("\\.mlg$" . tuareg-mode))
 
 ;; TODO: remove later. `+company-init-backends-h' in
 ;; `after-change-major-mode-hook' overrides `company-backends' set by
