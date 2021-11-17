@@ -7,9 +7,23 @@
 (setq reftex-label-alist
       (mapcar (lambda (e) `(,e ?e nil nil t)) +latex-math-environments))
 (after! latex
+
+  ;; Disable prettify in latex-mode
+  (appendq! +ligatures-in-modes '(latex-mode))
+
+  (setq +latex-indent-item-continuation-offset 'auto)
+
   (setq-default TeX-master 'guess)
 
-  (remove-hook! TeX-mode #'flyspell-mode)
+  (when-let
+      (app-path
+       (and IS-MAC
+            (file-exists-p! (or "/Applications/Skim.app"
+                                "~/Applications/Skim.app"))))
+    (add-to-list 'TeX-view-program-selection '(output-pdf "Skim"))
+    (add-to-list 'TeX-view-program-list
+                 (list "Skim" (format "%s/Contents/SharedSupport/displayline -g %%n %%o %%b"
+                                      app-path))))
 
   (add-hook! 'LaTeX-mode-hook
     (defun +latex--add-math-environments-h ()
@@ -18,10 +32,8 @@
       (prependq! font-latex-math-environments +latex-math-environments)))
 
   (add-hook! 'LaTeX-mode-hook
-             #'turn-off-auto-fill
              #'LaTeX-math-mode
-             #'+latex-setup-surround-h)
-  (add-hook! 'latex-mode-local-vars-hook
+             #'+latex-setup-surround-h
              #'+latex-maybe-guess-TeX-master-h))
 (map! :after latex
       :map LaTeX-mode-map
