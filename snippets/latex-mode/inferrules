@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: inferrule*
-# key: \inf
+# key: \inf*
 # --
 \inferrule*[right=$0]{
 }{

@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: inferrule
+# key: \inf
+# --
+\inferrule[$0]{
+}{
+}
