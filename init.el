@@ -1,14 +1,15 @@
 ;;; -*- lexical-binding: t; -*-
 
 (doom! :completion
-       company
-       ivy
+       (company +childframe)
+       (vertico +icons)
 
        :ui
        doom
        doom-dashboard
        ;;doom-quit
        hl-todo
+       hydra
        modeline
        ;;nav-flash
        ophints
@@ -37,7 +38,7 @@
        vc
 
        :checkers
-       syntax
+       (syntax +childframe)
        spell
        ;;grammar
 
@@ -46,7 +47,7 @@
        ;;editorconfig
        (eval +overlay)
        (lookup +dictionary +docsets)
-       lsp
+       (lsp + peek)
        magit
        ;;pdf
 
@@ -54,13 +55,13 @@
        (:if IS-MAC macos)
 
        :lang
-       ;;agda
+       (agda +local)
        ;;cc
        coq
        data
        emacs-lisp
        ;;fstar
-       ;;(haskell +dante)
+       (haskell +lsp)
        ;;idris
        ;;javascript
        (latex +latexmk)
