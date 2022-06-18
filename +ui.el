@@ -12,10 +12,9 @@
 (setq doom-font +font-jetbrains-mono
       doom-unicode-font +font-stix)
 
-(add-hook! 'doom-load-theme-hook :append
-  (defun +ui-init-unicode-font-h ()
-    (set-fontset-font t 'unicode doom-font)
-    (set-fontset-font t 'unicode doom-unicode-font nil 'append)))
+(add-hook! 'after-setting-font-hook :append
+  (defun +ui-tweak-unicode-font-h ()
+    (set-fontset-font t 'unicode doom-font nil 'prepend)))
 
 ;; (defun +font-test (font)
 ;;   (setq doom-font font)
