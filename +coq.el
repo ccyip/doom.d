@@ -1,6 +1,11 @@
 ;;; -*- lexical-binding: t; -*-
 
 (pushnew! doom-detect-indentation-excluded-modes 'coq-mode)
+;; Fix icons
+(after! all-the-icons
+  (push '("coq" . "\xe95f") all-the-icons-data/file-icon-alist)
+  (push '(coq-mode all-the-icons-fileicon "coq" :face all-the-icons-dyellow) all-the-icons-mode-icon-alist)
+  (push '("v" all-the-icons-fileicon "coq" :face all-the-icons-dyellow) all-the-icons-extension-icon-alist))
 
 (setq proof-splash-seen t)
 (map! :after coq-mode
