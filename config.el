@@ -9,6 +9,9 @@
       confirm-kill-emacs nil)
 ;; (setq-default cursor-in-non-selected-windows t)
 
+(use-package! evil-nerd-commenter
+  :commands evilnc-copy-and-comment-operator)
+
 (map! :n "M-t" #'transpose-words
       :n "C-t" #'pop-tag-mark
       :nv "gy" #'evilnc-copy-and-comment-operator
