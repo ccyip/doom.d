@@ -1,6 +1,8 @@
 ;;; -*- lexical-binding: t; -*-
 
 (pushnew! doom-detect-indentation-excluded-modes 'coq-mode)
+(pushnew! +company-box-doc-disabled-modes 'coq-mode)
+
 ;; Fix icons
 (after! all-the-icons
   (push '("coq" . "\xe95f") all-the-icons-data/file-icon-alist)

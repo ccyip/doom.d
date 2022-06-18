@@ -4,6 +4,7 @@
       +evil-want-o/O-to-continue-comments nil
       ;; evil-want-fine-undo t
       company-idle-delay 0
+      company-box-doc-enable nil
       display-line-numbers-type nil
       confirm-kill-emacs nil)
 ;; (setq-default cursor-in-non-selected-windows t)
@@ -13,12 +14,8 @@
       :nv "gy" #'evilnc-copy-and-comment-operator
       :g "M-;" #'comment-dwim)
 
-(map! :after company
-      :map company-active-map
-      "TAB" nil
-      [tab] nil)
-
 (load! "+ui")
+(load! "+completion")
 (load! "+checker")
 (load! "+latex")
 (load! "+coq")
