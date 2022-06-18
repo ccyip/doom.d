@@ -5,6 +5,7 @@
       ;; evil-want-fine-undo t
       company-idle-delay 0
       company-box-doc-enable nil
+      fill-column 70
       display-line-numbers-type nil
       confirm-kill-emacs nil)
 ;; (setq-default cursor-in-non-selected-windows t)
