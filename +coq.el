@@ -43,6 +43,7 @@
         ("nat" . ?ℕ) ("Prop" . ?ℙ) ("Real" . ?ℝ) ("bool" . ?𝔹)))
 
 (after! coq-mode
+  (setq coq-indent-align-with-first-arg t)
   (sp-with-modes 'coq-mode
     (sp-local-pair "(*" "*"
                    :actions '(insert)
