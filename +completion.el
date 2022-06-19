@@ -11,7 +11,15 @@
   (map! :map company-active-map
         [remap company-show-doc-buffer] #'+company-show-doc-maybe-box))
 
-(map! :after company
-      :map company-active-map
-      "TAB" nil
-      [tab] nil)
+(after! yasnippet
+  (defun +company-complete-or-yas (&optional arg)
+    (interactive "p")
+    (if (and yas-minor-mode
+             (yas-expand))
+        (company-abort)
+      (company-complete-common-or-cycle arg)))
+
+  (map! :after company
+        :map company-active-map
+        "TAB" #'+company-complete-or-yas
+        [tab] #'+company-complete-or-yas))
