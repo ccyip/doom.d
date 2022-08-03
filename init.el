@@ -23,7 +23,7 @@
        :editor
        (evil +everywhere)
        fold
-       ;;format
+       format
        ;;lispy
        multiple-cursors
        ;;objed
