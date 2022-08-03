@@ -1,7 +1,7 @@
 ;;; -*- lexical-binding: t; -*-
 
 (doom! :completion
-       (company +childframe)
+       company
        (vertico +icons)
 
        :ui
@@ -38,7 +38,7 @@
        vc
 
        :checkers
-       (syntax +childframe)
+       syntax
        spell
        ;;grammar
 
