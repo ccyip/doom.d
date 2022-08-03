@@ -47,7 +47,7 @@
        ;;editorconfig
        (eval +overlay)
        (lookup +dictionary +docsets)
-       (lsp + peek)
+       (lsp +peek)
        magit
        ;;pdf
 
