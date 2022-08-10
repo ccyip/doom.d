@@ -50,6 +50,7 @@
         ("nat" . ?ℕ) ("Prop" . ?ℙ) ("Real" . ?ℝ) ("bool" . ?𝔹)))
 
 (after! coq-mode
+  (add-hook 'coq-mode-hook #'rainbow-delimiters-mode)
   (sp-with-modes 'coq-mode
     (sp-local-pair "(*" "*"
                    :actions '(insert)
