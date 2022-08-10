@@ -23,4 +23,5 @@
 (load! "+checker")
 (load! "+latex")
 (load! "+coq")
+(load! "+haskell")
 (load! "+os")
