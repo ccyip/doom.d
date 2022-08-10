@@ -7,9 +7,10 @@
 (setq +font-cascadia-code (font-spec :family "Cascadia Code" :size 18))
 (setq +font-victor-mono (font-spec :family "Victor Mono" :size 18))
 (setq +font-fira-code (font-spec :family "Fira Code" :size 18))
+(setq +font-comic-code (font-spec :family "Comic Code Ligatures" :size 18))
 (setq +font-stix (font-spec :family "STIX Two Math"))
 
-(setq doom-font +font-jetbrains-mono
+(setq doom-font +font-comic-code
       doom-unicode-font +font-stix)
 
 (add-hook! 'after-setting-font-hook :append
@@ -19,4 +20,4 @@
 ;; (defun +font-test (font)
 ;;   (setq doom-font font)
 ;;   (set-frame-font doom-font)
-;;   (+ui-init-unicode-font-h))
+;;   (+ui-tweak-unicode-font-h))
