@@ -1,7 +1,7 @@
 ;;; -*- lexical-binding: t; -*-
 
 (doom! :completion
-       (company +childframe)
+       company
        (vertico +icons)
 
        :ui
