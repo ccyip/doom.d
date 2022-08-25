@@ -19,5 +19,6 @@
   (setq flycheck-posframe-warning-prefix ""
         flycheck-posframe-info-prefix ""
         flycheck-posframe-error-prefix ""
+        flycheck-posframe-prefix ""
         flycheck-posframe-border-width 1)
   (set-face-foreground 'flycheck-posframe-border-face "white"))
