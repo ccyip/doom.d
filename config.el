@@ -1,6 +1,7 @@
 ;;; -*- lexical-binding: t; -*-
 
 (setq doom-localleader-key "\\"
+      doom-localleader-alt-key "M-SPC \\"
       +evil-want-o/O-to-continue-comments nil
       ;; evil-want-fine-undo t
       company-idle-delay 0
@@ -8,7 +9,7 @@
       fill-column 70
       display-line-numbers-type nil
       confirm-kill-emacs nil)
-;; (setq-default cursor-in-non-selected-windows t)
+(setq-default truncate-lines nil)
 
 (use-package! evil-nerd-commenter
   :commands evilnc-copy-and-comment-operator)
