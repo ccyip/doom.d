@@ -22,6 +22,7 @@
 (load! "+ui")
 (load! "+completion")
 (load! "+checker")
+(load! "+lsp")
 (load! "+latex")
 (load! "+coq")
 (load! "+haskell")
