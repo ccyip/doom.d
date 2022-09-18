@@ -15,7 +15,7 @@
   :commands evilnc-copy-and-comment-operator)
 
 (map! :n "M-t" #'transpose-words
-      :n "C-t" #'pop-tag-mark
+      :n "C-t" #'transpose-chars
       :nv "gy" #'evilnc-copy-and-comment-operator
       :g "M-;" #'comment-dwim)
 
