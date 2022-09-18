@@ -2,7 +2,7 @@
 
 (map! :leader
       :prefix "o"
-       (:when (featurep! :os macos)
+       (:when (modulep! :os macos)
         :desc "Open in Terminal" "t" #'+macos/open-in-term))
 
 (if IS-MAC
