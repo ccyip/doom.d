@@ -67,7 +67,7 @@
        (latex +latexmk)
        ;;lean
        markdown
-       ocaml
+       (ocaml +lsp)
        ;;org
        python
        ;;rust
